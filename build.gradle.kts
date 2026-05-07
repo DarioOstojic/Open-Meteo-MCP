@@ -24,6 +24,7 @@ dependencies {
     implementation("org.springframework.ai:spring-ai-starter-mcp-server-webmvc")
     implementation("org.springframework.ai:spring-ai-mcp-annotations")
     implementation("com.fasterxml.jackson.core:jackson-databind")
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
