@@ -30,6 +30,7 @@ This server is one half of the applied case study described in the accompanying 
 
 ---
 
+<a id="glossary"></a>
 ## 📖 Glossary
 
 | Term | Meaning |
@@ -44,6 +45,7 @@ This server is one half of the applied case study described in the accompanying 
 
 ---
 
+<a id="overview"></a>
 ## 🔭 Overview
 
 This server acts as a bridge between AI assistants and the Open-Meteo weather API, allowing an LLM to retrieve forecast data using natural language rather than calling the underlying REST endpoint directly. Open-Meteo itself is a free, public weather API that does not require an API key, so this server's only authentication layer is the MCP-level key described in [Configuration](#configuration), which controls who is allowed to call this server's tool rather than who is allowed to query Open-Meteo.
@@ -52,6 +54,7 @@ In the applied case study from the accompanying thesis, this server was deployed
 
 ---
 
+<a id="tech-stack"></a>
 ## 🧱 Tech Stack
 
 - **Java 25** / **Spring Boot 3.5.9**
@@ -61,6 +64,7 @@ In the applied case study from the accompanying thesis, this server was deployed
 
 ---
 
+<a id="available-tool"></a>
 ## 🛠️ Available Tool
 
 The server exposes a single [MCP tool](#glossary):
@@ -80,6 +84,7 @@ Latitude and longitude are the only two parameters an LLM strictly needs to supp
 
 ---
 
+<a id="project-structure"></a>
 ## 🗂️ Project Structure
 
 ```text
@@ -158,6 +163,7 @@ Now that the code execution process was shown, here's an explanation of what eac
 
 ---
 
+<a id="configuration"></a>
 ## ⚙️ Configuration
 
 The server requires one environment variable to be set before it will start successfully.
@@ -170,6 +176,7 @@ The `X_API_HEADER_KEY` is not provided by Open-Meteo, since Open-Meteo itself do
 
 ---
 
+<a id="running-the-server"></a>
 ## 🚀 Running the Server
 
 ### Step 1: Choose a value for the MCP authentication key
@@ -195,6 +202,7 @@ A request to that endpoint without the correct `X-API-Key` header will be reject
 
 ---
 
+<a id="connecting-to-claude-desktop"></a>
 ## 🔌 Connecting to Claude Desktop
 
 Claude Desktop's two supported ways of reaching a remote MCP server are a graphical [custom connector](#glossary), and a manual edit of its configuration file. Which one applies depends on whether the server is reachable from the public internet or only running locally.
@@ -250,6 +258,7 @@ If the server is only running locally, for example with `./gradlew bootRun` on `
 
 ---
 
+<a id="testing-the-connection"></a>
 ## ✅ Testing the Connection
 
 Once connected, a natural-language prompt referencing weather or forecast information for a specific place should cause Claude to discover and call `getWeatherForecast`. For example, asking what the weather will be like in a named city over the coming days should be enough for Claude to resolve that city into coordinates and call the tool with them.
@@ -258,6 +267,7 @@ If Claude responds without attempting to call the tool, or states that it does n
 
 ---
 
+<a id="troubleshooting"></a>
 ## 🩺 Troubleshooting
 
 **Claude Desktop does not list the connector after restarting.** Confirm that the configuration file is valid JSON; a single misplaced comma or bracket will cause Claude Desktop to silently ignore the entire file rather than reporting an error. Restarting must mean fully quitting the application, not just closing its window.
